@@ -139,6 +139,13 @@ module RSpec
         end
       end
 
+      # in order to be use in case/when statement
+      it 'compares with the real class with ===' do
+        dbl = instance_double(LoadedClass)
+        expect(dbl.is_a?(LoadedClass)).to be true
+        expect(dbl === LoadedClass).to be true
+      end
+
       it 'validates `with` args against the method signature when stubbing a method' do
         dbl = instance_double(LoadedClass)
         prevents(/Wrong number of arguments. Expected 2, got 3./) {
